@@ -1,11 +1,22 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {Picker} from '@react-native-picker/picker';
+import axios from 'axios';
 
 const Formulario = () => {
 
   const [moneda, guardarMoneda] = useState("");
   const [criptoMoneda, guardarCriptoMoneda] = useState("");
+  const [criptoMonedas, guardarCriptoMonedas] = useState("");
+
+  useEffect(() => {
+    const consultaAPI = async () => {
+      const url = 'https://min-api.cryptocompare.com/data/top/mktcapfull?limit=10&tsym=USD';
+      const resultado = await axios.get(url);
+      guardarCriptoMonedas(resultado.data.data);
+    }
+    consultaAPI();
+  }, []);
 
   const obtenerMoneda = moneda => {
     console.log(moneda)
@@ -25,6 +36,9 @@ const Formulario = () => {
           <Picker.Item label="Córdoba Nicaragüense" value="NIO"/>
         </Picker>
         <Text style={styles.label}>Criptomoneda</Text>
+
+
+
       </View>
   );
 };
