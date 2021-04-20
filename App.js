@@ -1,14 +1,14 @@
 import React from 'react';
 
 import {StyleSheet} from 'react-native';
-import Header from './components/header';
+import Header from './components/Header';
 
 const App = () => {
-    return (
-        <>
-            <Header/>
-        </>
-    );
+  return (
+    <>
+      <Header />
+    </>
+  );
 };
 
 const styles = StyleSheet.create({});
