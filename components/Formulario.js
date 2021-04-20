@@ -1,12 +1,22 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {Picker} from '@react-native-picker/picker';
 
 const Formulario = () => {
+
+  const [moneda, guardarMoneda] = useState("");
+  const [criptoMoneda, guardarCriptoMoneda] = useState("");
+
+  const obtenerMoneda = moneda => {
+    console.log(moneda)
+  }
+
   return (
       <View>
         <Text style={styles.label}>Moneda</Text>
-        <Picker>
+        <Picker
+            onValueChange={moneda => obtenerMoneda(Moneda)}
+        >
           <Picker.Item label="- Seleccione -" value=""/>
           <Picker.Item label="Dolar USA" value="USD"/>
           <Picker.Item label="Peso Mexicano" value="MXN"/>
